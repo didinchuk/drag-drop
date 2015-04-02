@@ -98,11 +98,6 @@ var dd_panel = {
     * |IMAGE|     LABEL     |HANDLE|OPERATION|REMOVE|
     * |     |               |      |         |      |
     */
-/*
-    var width = 0;
-    for(var i; i < Object.keys(this.elementStructure).length; i++){
-      width =+
-    } */
 
     //create the main div element for the item
     var div = $('<div/>',{
