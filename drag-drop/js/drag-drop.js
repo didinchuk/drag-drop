@@ -175,52 +175,59 @@ var dd_panel = {
     //change the state attribute
     $(element).parent().attr('state',Math.abs($(element).parent().attr('state') - 1));
 
+    //update the visibility of panel elements
     this.updateVisibility(anchor);
 
   },
 
+
   updateVisibility : function(container){
 
+    //grab the parent object before entering the loop and loosing this access
     var controller = this;
 
+    //loop through once and make sure all elements with a 1 state are visible
     $( container ).children('div').each(function( index ) {
 
       if($(this).attr('state')==1){
-        controller.showElement(this);
+        controller.showElement(this); //see function showElement
       }
 
     });
 
-$( container ).children('div').each(function( index ) {
+    //do another pass and make sure all elements with state 0 have hidden children
+    $( container ).children('div').each(function( index ) {
 
-if($(this).attr('state')==0){
-    controller.hideElement(this);
-    /*$( container ).children("[parent='" + $(this).attr('id') + "']").each(function( index ) {
-      $( this ).hide();
-    });*/
-}
-});
+      if($(this).attr('state')==0){
+          controller.hideElement(this); //see function hideElement
+      }
 
-
-
-
-
+    });
 
   },
 
+  //function called to show an element's children
+  //this cuntion is STATIC
+  //element : the root element to process
   showElement : function(element){
+
+    //grab the parent object before entering the loop and loosing this access
     var controller = this;
 
+    //loop through all the elements in the parent div (should be entire list)
+    //select only elements with the attribute parent = this element's id
+    //this is intended to make sure all children that should be visible are made visible
     $(element).parent().children("[parent='" + $(element).attr('id') + "']").each(function( index ) {
       if($(this).parent().attr('state')!=0){
-        controller.hideElement(this);
-        $( this ).show();
+        controller.hideElement(this); //make recurvice call to children
+        $( this ).show();             //hide current element
       }
     });
+
   },
 
 
-  //function called to hide an element (and children)
+  //function called to hide an element's children
   //this cuntion is STATIC
   //element : the root element to process
   hideElement : function(element){
