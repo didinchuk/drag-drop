@@ -1,0 +1,274 @@
+<html>
+<head>
+  <script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.11.1.js"></script>
+  <script type="text/javascript" src="drag-drop/js/drag-drop.js"></script>
+  <script type="text/javascript" src="js/Sortable.js"></script>
+  <link rel="stylesheet" type="text/css" href="drag-drop/css/drag-drop.css">
+  <style>
+    .datasource-root{
+      background-color:#22313f;
+      color:white;
+    }
+
+    .datasource-branch{
+      background-color:#2C3E50;
+      color:white;
+    }
+
+    .datasource-leaf{
+      background-color:#ecf0f1;
+      color:#22313f;
+    }
+
+
+    #datasources{
+      width:300px;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="datasources">
+  </div>
+</body>
+</html>
+<script>
+
+window.onload = function() {
+  ini();
+
+};
+
+
+
+function ini(){
+
+  //Demo Data
+  var datasources = {
+
+    database : {
+
+      id : 'database',
+      type : 'database',
+      //parent : null,
+      //child : 'ftp-sources',
+      class : 'datasource-root',
+      iconImage : 'http://www.artistsvalley.com/images/icons/Database%20Application%20Icons/Datasource%20All/256x256/Datasource%20All.jpg',
+      icon : true,
+      dragable : false,
+      handle : false,
+      label : 'Databases',
+      minimize : true,
+      minimizeIconON : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-bottom-1-128.png',
+      minimizeIconOFF : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-left-1-128.png',
+      removeOption : false,
+
+      children : {
+
+        database_1 : {
+
+          id : 'database_1',
+          type : 'database-source',
+          class : 'datasource-branch',
+          iconImage : 'http://www.artistsvalley.com/images/icons/Database%20Application%20Icons/Grant%20Datasource/256x256/Grant%20Datasource.jpg',
+          icon : true,
+          dragable : false,
+          handle : null,
+          label : 'Stagin 1 (DB2)',
+          minimize : true,
+          minimizeIconON : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-bottom-1-128.png',
+          minimizeIconOFF : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-left-1-128.png',
+
+          children : {
+
+            database_feed_1 : {
+
+              id : 'database_feed_1',
+              type : 'database-leaf',
+              class : 'datasource-leaf',
+              icon : true,
+              iconImage : 'http://www.artistsvalley.com/images/icons/Database%20Application%20Icons/Datasource/256x256/Datasource.jpg',
+              dragable : true,
+              handle : null,
+              label : 'FTP Feed 1',
+              minimize : null,
+              minimizeIconOn : false,
+              removeOption : false,
+              children : null
+
+
+            }
+
+          }
+
+        },
+
+        database_2 : {
+
+          id : 'database_2',
+          type : 'database-source',
+          class : 'datasource-branch',
+          icon : true,
+          iconImage : 'http://www.artistsvalley.com/images/icons/Database%20Application%20Icons/Grant%20Datasource/256x256/Grant%20Datasource.jpg',
+          dragable : false,
+          handle : null,
+          label : 'Prod Main (Oracle)',
+          minimize : true,
+          minimizeIconON : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-bottom-1-128.png',
+          minimizeIconOFF : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-left-1-128.png',
+          removeOption : false,
+          children : null
+
+        }
+
+      }
+
+    },
+
+    ftp : {
+
+      id : 'ftp',
+      type : 'ftp',
+      //parent : null,
+      //child : 'ftp-sources',
+      class : 'datasource-root',
+      icon : true,
+      iconImage : 'https://lh6.ggpht.com/_JGLE8kHGvMk_6sbuRVkP0EAHjaCPkYJtlSzdOBOIqsjwryTV-rLbwachNpjeZGPsIA=w300',
+      dragable : false,
+      handle : null,
+      label : 'FTP',
+      minimize : true,
+      minimizeIconON : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-bottom-1-128.png',
+      minimizeIconOFF : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-left-1-128.png',
+      removeOption : false,
+
+      children : {
+
+        ftp_1 : {
+
+          id : 'ftp_1',
+          type : 'ftp-sources',
+          class : 'datasource-branch',
+          icon : true,
+          iconImage : 'http://ftpbox.org/images/box.png',
+          dragable : false,
+          handle : null,
+          label : 'FTP Main',
+          minimize : true,
+          minimizeIconON : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-bottom-1-128.png',
+          minimizeIconOFF : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-left-1-128.png',
+          removeOption : false,
+
+          children : {
+
+              ftp_feed_1 : {
+
+                id : 'ftp_feed_1',
+                type : 'ftp-leaf',
+                class : 'datasource-leaf',
+                icon : true,
+                iconImage : 'http://png-5.findicons.com/files/icons/1700/2d/512/folder_orange.png',
+                dragable : true,
+                handle : null,
+                label : 'FTP Feed 1',
+                minimize : null,
+                minimizeIcon : false,
+                removeOption : false,
+                children : null
+
+              },
+
+              ftp_feed_2 : {
+
+                id : 'ftp_feed_2',
+                type : 'ftp-leaf',
+                class : 'datasource-leaf',
+                icon : true,
+                iconImage : 'http://png-5.findicons.com/files/icons/1700/2d/512/folder_orange.png',
+                dragable : true,
+                handle : null,
+                label : 'FTP Feed 2',
+                minimize : null,
+                minimizeIcon : false,
+                removeOption : false,
+                children : null
+
+              }
+
+          }
+
+        },
+
+        ftp_2 : {
+
+          id : 'ftp_2',
+          type : 'ftp-sources',
+          class : 'datasource-branch',
+          icon : true,
+          iconImage : 'http://ftpbox.org/images/box.png',
+          dragable : false,
+          handle : null,
+          label : 'FTP Secondary',
+          minimize : true,
+          minimizeIconON : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-bottom-1-128.png',
+          minimizeIconOFF : 'https://cdn1.iconfinder.com/data/icons/arrows-13/32/arrow-square-left-1-128.png',
+          removeOption : false,
+
+          children : {
+
+              ftp_feed_3 : {
+
+                id : 'ftp_feed_3',
+                type : 'ftp-leaf',
+                class : 'datasource-leaf',
+                icon : true,
+                iconImage : 'http://png-5.findicons.com/files/icons/1700/2d/512/folder_orange.png',
+                dragable : true,
+                handle : null,
+                label : 'FTP Feed 3',
+                minimize : null,
+                minimizeIcon : false,
+                removeOption : false,
+                children : null
+
+              }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  };
+
+  var sdrn = Object.create(dd_node);
+  sdrn = datasources;
+  console.log(sdrn);
+
+  var dsp = Object.create(dd_panel);
+  dsp.nodes = sdrn
+  dsp.id = 'ds_id';
+
+
+  dsp.sortable = false;
+
+  dsp.sortable = {
+
+    draggable : '.datasource-leaf',
+    group : 'data',
+    sort : false
+
+  },
+
+  dsp.anchor = '#datasources';
+  dsp.class = 'datasources-style';
+  dsp.header = 'Datasources';
+
+  dsp.init();
+
+}
+
+</script>
