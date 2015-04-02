@@ -116,7 +116,7 @@ var dd_panel = {
       class : 'dd-element-label-container'
     });
 
-    var labelP = $('<p/>',{
+    var labelP = $('<span/>',{
       text : element.label,
       class : 'dd-element-label-p'
     });

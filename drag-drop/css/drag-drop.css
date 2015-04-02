@@ -4,7 +4,7 @@
   //padding-top:0px;
   //padding-left:5px;
   //padding-right:5px;
-  height:50px;
+  min-height:10px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -31,10 +31,22 @@ overflow: hidden;
   width:60%;
   position: absolute;
   left:20%;
+  height:100%;
+line-height:100%;
+ vertical-align: middle;
+display: inline-block;
+
+
+
 }
 
 .dd-element-label-p{
   width:100%;
+display: inline-block;
+  vertical-align: middle;
+  height:100%;
+  margin:auto;
+//margin:0px;
 
 }
 
